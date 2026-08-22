@@ -32,7 +32,7 @@ Everything ships as **plugins / skills / a standalone launcher** — `git status
 
 ## ✦ Quick start
 
-Prerequisites: Windows 10/11, [Git](https://git-scm.com/), [Node.js ≥ 18](https://nodejs.org/), Edge or Chrome.
+Prerequisites: Windows 10/11, [Git](https://git-scm.com/), [Node.js ^22.19 || >=24](https://nodejs.org/), Edge or Chrome.
 
 ```bat
 git clone https://github.com/WZZNNE/DSH-CyberWorkStation.git

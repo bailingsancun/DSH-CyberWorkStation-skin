@@ -32,7 +32,7 @@ DeepSeek Harness 是 DeepSeek 官方的 agent 运行框架,功能强大但原生
 
 ## ✦ 快速开始
 
-前置:Windows 10/11、[Git](https://git-scm.com/)、[Node.js ≥ 18](https://nodejs.org/)、Edge 或 Chrome。
+前置:Windows 10/11、[Git](https://git-scm.com/)、[Node.js ^22.19 || ≥24](https://nodejs.org/)、Edge 或 Chrome。
 
 ```bat
 git clone https://github.com/WZZNNE/DSH-CyberWorkStation.git

@@ -2,10 +2,10 @@
 rem ============================================================
 rem  DSH Suite 一键安装
 rem  1. 克隆上游 deepseek-harness 本体(约 1.5GB,不随包分发)
-rem  2. 安装依赖并构建 Web 前端
-rem  3. 把套件全部插件注册进 web / headless profile
-rem  4. 启动 DSH 启动器
-rem  前置:Git、Node.js >= 18(会自动 corepack enable 获得 pnpm)
+rem 2. 安装依赖并构建 Web 前端
+rem 3. 把套件全部插件注册进 web / headless profile
+rem 4. 启动 DSH 启动器
+rem 前置:Git、Node.js ^22.19 || >=24(套件与上游 rc.8 的 engines 要求)
 rem ============================================================
 setlocal
 chcp 65001 >nul
@@ -23,7 +23,8 @@ echo [2/5] 获取 deepseek-harness 本体...
 if exist "%CORE%\package.json" (
   echo   已内置(%CORE%),跳过克隆
 ) else (
-  git clone --depth 1 https://github.com/deepseek-ai/deepseek-harness.git "%CORE%" || exit /b 1
+  rem 套件插件按 dsh-v0.1.0-rc.8 生态开发:必须锁定该 tag(master 已升至 0.1.1-rc.2,插件 API 不兼容)
+  git clone --depth 1 --branch dsh-v0.1.0-rc.8 https://github.com/deepseek-ai/deepseek-harness.git "%CORE%" || exit /b 1
 )
 
 echo [3/5] 安装依赖并构建(首次约 5-10 分钟)...
@@ -34,7 +35,7 @@ call corepack pnpm build:lib || (popd && exit /b 1)
 call corepack pnpm build:web || (popd && exit /b 1)
 
 echo [4/5] 注册套件插件到 web profile...
-for %%P in (dsh-safe-guard dsh-cost-meter-plus dsh-token-usage-plus dsh-skin-loader dsh-control-deck dsh-price-hint dsh-quick-workspace dsh-skin-studio) do (
+for %%P in (dsh-safe-guard dsh-cost-meter-plus dsh-token-usage-plus dsh-skin-loader dsh-control-deck dsh-price-hint dsh-quick-workspace dsh-skin-studio dsh-skin-center) do (
   echo   + %%P
   call corepack pnpm dsh plugin --profile web add "link:%SUITE%plugins\%%P"
 )
@@ -45,6 +46,9 @@ popd
 
 rem link: 插件需要自带依赖
 pushd "%SUITE%plugins\dsh-cost-meter-plus"
+call corepack pnpm install
+popd
+pushd "%SUITE%plugins\dsh-skin-center"
 call corepack pnpm install
 popd
 
