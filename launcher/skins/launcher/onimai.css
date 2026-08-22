@@ -1,0 +1,593 @@
+/* 启动器皮肤:onimai —— 《别当欧尼酱了！》官网风格(onimai.jp)
+ * 配色:奶油白 #fffdf4 / 奶油黄 #fffbc6 / 棕 #926453 / 樱花粉 #ff9ec3
+ * 加载动画:还原官网 GSAP 时序(纯 CSS 伪元素实现):
+ *   拼图弹性聚合(0-0.7s) → 整体放大 2 倍(1.4s) → 淡出(1.7s) → 遮罩消失(2.5s)
+ */
+
+/* 字体:站酷快乐体(Google Fonts 开源版,OFL 免费可商用)——圆润粗体,贴近官网日文观感 */
+@font-face {
+  font-family: 'ZCOOL KuaiLe';
+  src: url('/assets/onimai/fonts/zcool-kuaile.woff2') format('woff2');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* ══ 暗色基准(默认):深夜咖啡馆风 ══ */
+:root {
+  --lc-font: 'ZCOOL KuaiLe', 'Microsoft YaHei', '微软雅黑', sans-serif;
+  --lc-bg: #2b211a;
+  --lc-nav-bg: #33261d;
+  --lc-card-bg: #3a2c22;
+  --lc-input-bg: #2b211a;
+  --lc-btn-bg: #46352a;
+  --lc-hover: rgba(255, 158, 195, .09);
+  --lc-active-bg: rgba(255, 158, 195, .13);
+  --lc-border: #574434;
+  --lc-border-dim: #46352a;
+  --lc-text: #f2e6da;
+  --lc-text-dim: #a9977f;
+  --lc-title: #fff7ee;
+  --lc-accent: #ff9ec3;
+  --lc-accent-dim: #8a5a6e;
+  --lc-accent-bg: rgba(255, 158, 195, .13);
+  --lc-ok: #ffd76a;
+  --lc-warn: #ffb04c;
+  --lc-danger: #ff7d8a;
+  --lc-danger-dim: #7a3a44;
+  --lc-radius: 12px;
+  --lc-card-glow: 0 6px 24px rgba(0, 0, 0, .18);
+  --lc-hero-bg: url('/assets/onimai/visual_bg.jpg') center 32% / cover no-repeat;
+  --lc-hero-veil: linear-gradient(90deg, rgba(61, 35, 20, .72), rgba(61, 35, 20, .25) 55%, rgba(255, 251, 198, .10));
+  --lc-hero-title: #fff6ee;
+  --lc-hero-title-shadow: 0 2px 16px rgba(0, 0, 0, .5);
+  --lc-hero-sub: rgba(255, 244, 232, .85);
+  --lc-toast-anim: onimai-pop .3s cubic-bezier(.34, 1.56, .64, 1);
+}
+
+/* ══ 明亮(奶油粉彩风,官网主形态) ══ */
+:root[data-theme="light"] {
+  --lc-bg: #fffdf4;
+  --lc-nav-bg: #ffffff;
+  --lc-card-bg: #ffffff;
+  --lc-input-bg: #fff9e8;
+  --lc-btn-bg: #fff1d6;
+  --lc-hover: #fff3e2;
+  --lc-active-bg: #ffeaf4;
+  --lc-border: #e8dcc2;
+  --lc-border-dim: #f2e9d6;
+  --lc-text: #5b4636;
+  --lc-text-dim: #a08a76;
+  --lc-title: #3d2b1e;
+  --lc-accent: #ff8fb8;
+  --lc-accent-dim: #ffc9dd;
+  --lc-accent-bg: rgba(255, 143, 184, .12);
+  --lc-ok: #58b98a;
+  --lc-warn: #d99a3d;
+  --lc-danger: #e56a7a;
+  --lc-danger-dim: #f2b8c0;
+  --lc-card-glow: 0 4px 18px rgba(180, 140, 90, .10);
+  --lc-hero-veil: linear-gradient(90deg, rgba(255, 251, 220, .78), rgba(255, 251, 220, .28) 55%, rgba(255, 255, 255, .12));
+  --lc-hero-title: #5b3a52;
+  --lc-hero-title-shadow: 0 1px 12px rgba(255, 255, 255, .7);
+  --lc-hero-sub: rgba(91, 70, 54, .82);
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] {
+    --lc-bg: #fffdf4;
+    --lc-nav-bg: #ffffff;
+    --lc-card-bg: #ffffff;
+    --lc-input-bg: #fff9e8;
+    --lc-btn-bg: #fff1d6;
+    --lc-hover: #fff3e2;
+    --lc-active-bg: #ffeaf4;
+    --lc-border: #e8dcc2;
+    --lc-border-dim: #f2e9d6;
+    --lc-text: #5b4636;
+    --lc-text-dim: #a08a76;
+    --lc-title: #3d2b1e;
+    --lc-accent: #ff8fb8;
+    --lc-accent-dim: #ffc9dd;
+    --lc-accent-bg: rgba(255, 143, 184, .12);
+    --lc-ok: #58b98a;
+    --lc-warn: #d99a3d;
+    --lc-danger: #e56a7a;
+    --lc-danger-dim: #f2b8c0;
+    --lc-card-glow: 0 4px 18px rgba(180, 140, 90, .10);
+    --lc-hero-veil: linear-gradient(90deg, rgba(255, 251, 220, .78), rgba(255, 251, 220, .28) 55%, rgba(255, 255, 255, .12));
+    --lc-hero-title: #5b3a52;
+    --lc-hero-title-shadow: 0 1px 12px rgba(255, 255, 255, .7);
+    --lc-hero-sub: rgba(91, 70, 54, .82);
+  }
+}
+
+/* ══ hero 主视觉增强 ══ */
+.hero { min-height: 240px; border-radius: 16px; box-shadow: var(--lc-card-glow) }
+.hero-kicker { letter-spacing: 3px }
+.brand-glyph { text-shadow: 0 0 12px rgba(255, 143, 184, .5) }
+.nav-btn.active { box-shadow: inset 0 0 0 1px var(--lc-accent-dim) }
+.qcard:hover, .card:hover { box-shadow: 0 8px 26px rgba(255, 143, 184, .16) }
+.btn.primary { box-shadow: 0 0 14px rgba(255, 143, 184, .35) }
+
+/* ══════════════════════════════════════════════════════════════════
+ * 加载动画 —— 还原 onimai.jp 官网(纯 CSS,四伪元素实现)
+ * 层级:遮罩 99999 < 拼图组 100000 < 外框 100001 < 小图标 100002
+ * 时间线(2.5s):0-0.7s 拼图弹性聚合 / 1.4s 整体放大 2x /
+ *             1.7s 淡出 / 1.9-2.5s 遮罩淡出
+ * ══════════════════════════════════════════════════════════════════ */
+
+/* 加载动画素材令牌:暗色时 全屏遮罩(米黄)↔旋转外框(深棕) 颜色互换,明亮保持官网原色 */
+:root {
+  --lc-loader-bg: url('/assets/onimai/l_bg.png');      /* 拼图组圆底:保持白色不变 */
+  --lc-loader-frm: url('/assets/onimai/l_frm_cream.png'); /* 旋转外框:米黄 */
+  --lc-loader-veil: #926454;                           /* 全屏遮罩:深棕 */
+}
+:root[data-theme="light"] {
+  --lc-loader-bg: url('/assets/onimai/l_bg.png');      /* 官网白圆底 */
+  --lc-loader-frm: url('/assets/onimai/l_frm.png');    /* 官网深棕旋转圈 */
+  --lc-loader-veil: #fffbc6;                           /* 官网奶油黄遮罩 */
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] {
+    --lc-loader-bg: url('/assets/onimai/l_bg.png');
+    --lc-loader-frm: url('/assets/onimai/l_frm.png');
+    --lc-loader-veil: #fffbc6;
+  }
+}
+
+/* 1. 奶油黄全屏遮罩 */
+html::before {
+  content: ''; position: fixed; inset: 0; z-index: 99999; pointer-events: none;
+  background: var(--lc-loader-veil);
+  animation: onimai-veil 2.5s both;
+}
+
+/* 2. 中央拼图组(l_bg + l_a1~l_a5 六层叠放,整体弹性弹出) */
+body::after {
+  content: ''; position: fixed; z-index: 100000; pointer-events: none;
+  width: 230px; height: 230px; top: calc(50% - 115px); left: calc(50% - 115px);
+  background-image: var(--lc-loader-bg), url('/assets/onimai/l_a1.png'),
+    url('/assets/onimai/l_a2.png'), url('/assets/onimai/l_a3.png'),
+    url('/assets/onimai/l_a4.png'), url('/assets/onimai/l_a5.png');
+  background-repeat: no-repeat; background-position: 0 0; background-size: contain;
+  animation: onimai-logo 2.5s both;
+}
+
+/* 3. 旋转外框(1.5s 逆时针无限,同遮罩淡出) */
+body::before {
+  content: ''; position: fixed; z-index: 100001; pointer-events: none;
+  width: 230px; height: 230px; top: calc(50% - 115px); left: calc(50% - 115px);
+  background: var(--lc-loader-frm) no-repeat 0 0 / contain;
+  animation: onimai-rot 1.5s linear infinite, onimai-veil 2.5s both;
+}
+
+/* 4. 阶梯旋转小图标(logo1 右上,4s 阶梯) */
+html::after {
+  content: ''; position: fixed; z-index: 100002; pointer-events: none;
+  width: 26.68px; height: 26.68px; top: calc(50% - 115px + 39.33px); left: calc(50% - 115px + 83.49px);
+  background: url('/assets/onimai/l_a1_after.png') no-repeat 0 0 / contain;
+  animation: onimai-plus 4s linear infinite, onimai-plus-in 2.5s both;
+}
+
+/* ── keyframes ── */
+
+/* 遮罩与外部件淡出(1.9s 起 0.6s 淡出) */
+@keyframes onimai-veil {
+  0% { opacity: 1; visibility: visible }
+  76% { opacity: 1; visibility: visible }
+  100% { opacity: 0; visibility: hidden }
+}
+
+/* 小图标淡入(随拼图延迟 0.1s 出现) + 共用淡出 */
+@keyframes onimai-plus-in {
+  0% { opacity: 0; visibility: hidden }
+  5% { opacity: 1; visibility: visible }
+  76% { opacity: 1; visibility: visible }
+  100% { opacity: 0; visibility: hidden }
+}
+
+/* 拼图组:弹性聚合(过冲模拟 elastic.out) → 1.4s 放大 2x → 淡出 */
+@keyframes onimai-logo {
+  0% { opacity: 0; transform: scale(.1) }
+  8% { opacity: 1; transform: scale(1.18) }
+  20% { transform: scale(1) }
+  56% { opacity: 1; transform: scale(1) }
+  68% { opacity: 1; transform: scale(2.05) }
+  78% { opacity: 0; transform: scale(2.35) }
+  100% { opacity: 0; visibility: hidden }
+}
+
+/* 外框逆时针旋转(原站 rotation_r) */
+@keyframes onimai-rot {
+  0% { transform: rotate(0) }
+  100% { transform: rotate(-360deg) }
+}
+
+/* 小图标阶梯旋转(原站 plusroutation_r) */
+@keyframes onimai-plus {
+  0% { transform: rotate(0) }
+  5% { transform: rotate(-90deg) }
+  25% { transform: rotate(-90deg) }
+  30% { transform: rotate(-180deg) }
+  50% { transform: rotate(-180deg) }
+  55% { transform: rotate(-270deg) }
+  75% { transform: rotate(-270deg) }
+  80% { transform: rotate(-360deg) }
+  100% { transform: rotate(-360deg) }
+}
+
+/* toast 弹入 */
+@keyframes onimai-pop {
+  from { opacity: 0; transform: translateY(10px) scale(.92) }
+  to { opacity: 1; transform: none }
+}
+
+/* 无头截图/录屏模式(?noanim):直接隐藏加载动画 */
+html.noanim::before, html.noanim::after, html.noanim body::before, html.noanim body::after {
+  animation: none !important; opacity: 0 !important; visibility: hidden !important
+}
+
+/* ══════════════════════════════════════════════════════════════════
+ * 侧边栏 —— 仿 onimai.jp 官网导航胶囊菜单
+ * 官网 .navLink 特征:右圆角胶囊 / 左无边框 / 右下偏移实色阴影 /
+ * hover 浅色填充从左滑入 / 奇数项珊瑚粉 #ee858c、偶数项天蓝 #45bbff /
+ * 文字 hover 变棕 #926453 / 右侧小箭头装饰位移
+ * ══════════════════════════════════════════════════════════════════ */
+
+/* 侧边栏颜色令牌(暗色基准) */
+:root {
+  /* 暗色:可爱女仆风 —— 黑巧克力面板 + 奶白围裙 + 少女粉蝴蝶结 */
+  --lc-nav-pink: #ffb3c9;              /* 少女粉:奇数项边框/文字(粉蝴蝶结) */
+  --lc-nav-pink-fill: rgba(255, 179, 201, .17);
+  --lc-nav-blue: #fff8e7;              /* 奶白:偶数项边框/文字(围裙) */
+  --lc-nav-blue-fill: rgba(255, 248, 231, .12);
+  --lc-nav-brown: #fff8e7;             /* 奶白:brand 胶囊边框 */
+  --lc-nav-shadow: rgba(255, 179, 201, .22);    /* 柔粉光晕阴影(官网同色系阴影) */
+  --lc-nav-stripe: rgba(255, 208, 221, .16);    /* 奶油粉半透明条纹 */
+  --lc-nav-stripe2: transparent;
+  --lc-nav-panel: #1d1512;             /* 黑巧克力面板 */
+  --lc-nav-hover-txt: #fffdf4;         /* hover 文字奶白 */
+  --lc-nav-title: #fff8e7;             /* brand 标题奶白 */
+  --lc-nav-btn-bg: rgba(255, 179, 201, .8);     /* 奇数项:粉底填充(80% 不透明,透出面板) */
+  --lc-nav-btn-bg-even: rgba(255, 248, 231, .8); /* 偶数项:奶白底填充(80% 不透明) */
+  --lc-nav-text: #33261d;              /* 填充上文字:深棕 */
+  --lc-nav-text-even: #33261d;
+  --lc-nav-hover-bg: #33261d;          /* hover/active:深棕底奶白字 */
+  --lc-nav-active-border: #33261d;     /* active 边框:深棕(与背景统一) */
+  --lc-nav-arrow-filter: brightness(.5);       /* 粉底上箭头压深 */
+  --lc-nav-arrow-hover-filter: brightness(1.15); /* 深棕底上箭头提亮 */
+}
+/* 明亮(官网原色) */
+:root[data-theme="light"] {
+  --lc-nav-pink: #ee858c;
+  --lc-nav-pink-fill: #ffd9dc;
+  --lc-nav-blue: #45bbff;
+  --lc-nav-blue-fill: #d4efff;
+  --lc-nav-brown: #926453;
+  --lc-nav-shadow: #d9b8a8;
+  --lc-nav-stripe: #fff899;
+  --lc-nav-stripe2: #fffdf4;
+  --lc-nav-panel: #fffdf4;
+  --lc-nav-hover-txt: #926453;
+  --lc-nav-title: #926453;
+  --lc-nav-btn-bg: var(--lc-nav-panel);
+  --lc-nav-btn-bg-even: var(--lc-nav-panel);
+  --lc-nav-text: var(--lc-nav-pink);
+  --lc-nav-text-even: var(--lc-nav-blue);
+  --lc-nav-hover-bg: var(--lc-nav-panel);
+  --lc-nav-active-border: var(--lc-nav-pink);
+  --lc-nav-arrow-filter: none;
+  --lc-nav-arrow-hover-filter: none;
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] {
+    --lc-nav-pink: #ee858c;
+    --lc-nav-pink-fill: #ffd9dc;
+    --lc-nav-blue: #45bbff;
+    --lc-nav-blue-fill: #d4efff;
+    --lc-nav-brown: #926453;
+    --lc-nav-shadow: #d9b8a8;
+    --lc-nav-stripe: #fff899;
+    --lc-nav-stripe2: #fffdf4;
+    --lc-nav-panel: #fffdf4;
+    --lc-nav-hover-txt: #926453;
+    --lc-nav-title: #926453;
+    --lc-nav-btn-bg: var(--lc-nav-panel);
+    --lc-nav-btn-bg-even: var(--lc-nav-panel);
+    --lc-nav-text: var(--lc-nav-pink);
+    --lc-nav-text-even: var(--lc-nav-blue);
+    --lc-nav-hover-bg: var(--lc-nav-panel);
+    --lc-nav-arrow-filter: none;
+    --lc-nav-arrow-hover-filter: none;
+  }
+}
+
+/* 面板:官网菜单为白底玻璃面板(背景透明,透出右侧 body 背景) */
+.nav {
+  background: transparent;
+  border-right: 0;
+  padding: 18px 10px 14px 0;
+  gap: 6px;
+}
+
+/* 品牌区:官网 hlogo 胶囊(奶油黄斜条纹 + 棕边框 + 偏移阴影) */
+.brand {
+  position: relative;
+  background-color: var(--lc-nav-panel);
+  background-image: repeating-linear-gradient(-45deg, var(--lc-nav-stripe), var(--lc-nav-stripe) 14px, var(--lc-nav-stripe2) 0, var(--lc-nav-stripe2) 22px);
+  border: 3px solid var(--lc-nav-brown);
+  border-left-width: 0;
+  border-radius: 0 26px 26px 0;
+  box-shadow: 3px 3px 0 var(--lc-nav-shadow);
+  padding: 9px 14px 9px 14px;
+  margin-bottom: 16px;
+  color: var(--lc-nav-title);
+}
+.brand-logo { border-radius: 8px; box-shadow: 0 0 0 2px rgba(255, 255, 255, .35) }
+
+/* 导航项:官网 navLink 胶囊 */
+.nav-btn {
+  position: relative;
+  border: 3px solid var(--lc-nav-pink);
+  border-left-width: 0;
+  border-radius: 0 22px 22px 0;
+  background: var(--lc-nav-btn-bg);
+  color: var(--lc-nav-text);
+  padding: 9px 28px 9px 18px;
+  margin-bottom: 10px;
+  box-shadow: 3px 3px 0 var(--lc-nav-shadow);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  overflow: hidden;
+  transition: color .3s ease;
+}
+/* 填充层:从左滑入(官网 :after) */
+.nav-btn:after {
+  content: '';
+  position: absolute; top: 0; bottom: 0; left: 0;
+  width: 0;
+  background: var(--lc-nav-pink-fill);
+  border-radius: 0 22px 22px 0;
+  transition: width .3s ease;
+  z-index: 0;
+}
+/* 右侧装饰箭头(官网 nav_mark_p.svg) */
+.nav-btn:before {
+  content: '';
+  position: absolute; top: 50%; right: 6px;
+  width: 22px; height: 11px;
+  transform: translateY(-50%);
+  background: url('/assets/onimai/nav_mark_p.svg') no-repeat center right / contain;
+  transition: right .3s ease;
+  filter: var(--lc-nav-arrow-filter, none);
+  z-index: 1;
+}
+.nav-btn:hover, .nav-btn.active {
+  background: var(--lc-nav-hover-bg);
+  color: var(--lc-nav-hover-txt);
+  box-shadow: 3px 3px 0 var(--lc-nav-shadow);
+}
+/* active 项:暗色全深棕(边框/背景统一) / 亮色官网粉 */
+.nav-btn.active { border-color: var(--lc-nav-active-border) }
+.nav-btn:not(.active):hover:after { width: 100% }  /* 仅非选中项 hover 展开填充;active 保持纯净深棕 */
+.nav-btn:hover:before, .nav-btn.active:before { right: 2px; filter: var(--lc-nav-arrow-hover-filter, none) }
+.nav-glyph, .nav-text { position: relative; z-index: 2 }
+
+/* 偶数项:官网天蓝系 */
+.nav-btn:nth-of-type(even) {
+  border-color: var(--lc-nav-blue);
+  background: var(--lc-nav-btn-bg-even);
+  color: var(--lc-nav-text-even);
+}
+.nav-btn:nth-of-type(even):after { background: var(--lc-nav-blue-fill) }
+.nav-btn:nth-of-type(even):before { background-image: url('/assets/onimai/nav_mark_b.svg') }
+
+/* 左下语言按钮:恢复普通按钮,避免被 nth-of-type 染色 */
+.lang-btn {
+  background: transparent;
+  border: 1px solid var(--lc-border);
+  color: var(--lc-text-dim);
+  border-radius: var(--lc-radius, 6px);
+}
+.lang-btn:hover { color: var(--lc-accent); border-color: var(--lc-accent) }
+
+/* 底部注释行 */
+.nav-foot { letter-spacing: 1px; padding: 8px; color: var(--lc-nav-pink) }
+
+/* 偶数项 hover/active 文字同样变色(官网 hover 统一变棕;提高特异性覆盖 nth-of-type) */
+.nav-btn:nth-of-type(even):hover, .nav-btn:nth-of-type(even).active { color: var(--lc-nav-hover-txt) }
+
+/* ══════════════════════════════════════════════════════════════════
+ * introduction 子网站背景移植(亮色模式)
+ *   官网结构: .mainbg_bg(mainbg.jpg 最底层) < #mainbg(pixi 飘动粒子)
+ *             < .sub_ybg(#fff899 黄底 + bg_sub.png 白花纹 150s 旋转)
+ *   移植: body = mainbg.jpg 最底层 / .stage 双层粒子漂移 /
+ *         .nav = 黄底白花纹(高于 body 背景,低于侧边选项)
+ * ══════════════════════════════════════════════════════════════════ */
+/* 背景开关(暗色:窄条奶油粉微光 / 亮色:黄底白花纹窄条) */
+:root {
+  --lc-mainbg: var(--lc-bg);
+  --lc-nav-face: none;
+  --lc-nav-face-bg: rgba(255, 208, 221, .09);
+  --lc-nav-face-w: 226px;
+  --lc-nav-clip: visible;
+  --lc-nav-zfix: 1;
+  --lc-stage-zfix: auto;
+  --lc-stage-drift-a: none;
+  --lc-stage-drift-b: none;
+  --lc-stage-avatar: none;
+  --lc-tbl-bg: transparent;
+  --lc-tbl-shadow: none;
+}
+:root[data-theme="light"] {
+  --lc-mainbg: url('/assets/onimai/mainbg.jpg') center / cover no-repeat fixed;
+  --lc-nav-face: url('/assets/onimai/bg_sub.png');
+  --lc-nav-face-bg: #fff899;
+  --lc-nav-face-w: 180px;
+  --lc-nav-clip: hidden;
+  --lc-nav-zfix: 1;
+  --lc-stage-zfix: 1;
+  --lc-stage-drift-a: url('/assets/onimai/bg/bg_blue.svg'), url('/assets/onimai/bg/bg_pink.svg'), url('/assets/onimai/bg/bg_orange.svg'), url('/assets/onimai/bg/bg_blue.svg');
+  --lc-stage-drift-b: url('/assets/onimai/bg/bg_star_yellow.svg'), url('/assets/onimai/bg/bg_star_blue.svg');
+  --lc-stage-avatar: url('/assets/onimai/circle_mahiro.png');
+  --lc-tbl-bg: rgba(255, 255, 255, .72);
+  --lc-tbl-shadow: 0 2px 12px rgba(180, 140, 90, .08);
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] {
+    --lc-mainbg: url('/assets/onimai/mainbg.jpg') center / cover no-repeat fixed;
+    --lc-nav-face: url('/assets/onimai/bg_sub.png');
+    --lc-nav-face-bg: #fff899;
+    --lc-nav-face-w: 180px;
+    --lc-nav-clip: hidden;
+    --lc-nav-zfix: 1;
+    --lc-stage-zfix: 1;
+    --lc-stage-drift-a: url('/assets/onimai/bg/bg_blue.svg'), url('/assets/onimai/bg/bg_pink.svg'), url('/assets/onimai/bg/bg_orange.svg'), url('/assets/onimai/bg/bg_blue.svg');
+    --lc-stage-drift-b: url('/assets/onimai/bg/bg_star_yellow.svg'), url('/assets/onimai/bg/bg_star_blue.svg');
+    --lc-stage-avatar: url('/assets/onimai/circle_mahiro.png');
+    --lc-tbl-bg: rgba(255, 255, 255, .72);
+    --lc-tbl-shadow: 0 2px 12px rgba(180, 140, 90, .08);
+  }
+}
+
+/* body 最底层: mainbg.jpg(官网 .mainbg_bg) */
+body { background: var(--lc-mainbg) }
+
+/* 侧边栏背景: 官网 sub_ybg 变窄为竖向条(左缘贴窗口),花纹缓慢流动 */
+.nav { overflow: var(--lc-nav-clip) }
+.nav::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: var(--lc-nav-face-w, 150px);
+  height: 100%;
+  background-image: var(--lc-nav-face);
+  background-color: var(--lc-nav-face-bg);
+  background-repeat: repeat;
+  animation: onimai-face-scroll 90s linear infinite;
+  transition: width .45s ease, background-color .45s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+.nav > * { position: relative; z-index: var(--lc-nav-zfix) }
+
+/* ── 语言切换:半圆形贴窗图标(亮 200.jpg / 暗 210.jpg,边框随背景条) ── */
+:root { --lc-lang-img: url('/assets/onimai/210.jpg') }
+:root[data-theme="light"] { --lc-lang-img: url('/assets/onimai/200.jpg') }
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] { --lc-lang-img: url('/assets/onimai/200.jpg') }
+}
+.lang-btn {
+  position: fixed; left: -60px; bottom: -105px; z-index: 2;
+  width: 300px; height: 300px;
+  border: 2px solid var(--lc-nav-face-bg);
+  border-radius: 50%;
+  background: var(--lc-lang-img) center / cover no-repeat;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .18);
+  cursor: pointer;
+  transition: transform .2s ease, border-color .2s ease;
+}
+.lang-btn:hover {
+  transform: scale(1.08);
+  border-color: var(--lc-nav-face-bg);
+}
+/* 点击过场:左下角完整圆直径快速增大(颜色=当前刷新界面底色) → 刷新动画 */
+#lang-sweep {
+  position: fixed; left: 0; bottom: 0; z-index: 100003; pointer-events: none;
+  width: 300vmax; height: 300vmax;
+  border-radius: 50%;
+  background: var(--lc-loader-veil);
+  transform-origin: center;
+  transform: translate(-50%, 50%);
+  animation: onimai-lang-sweep .6s cubic-bezier(.55, 0, .85, .4) forwards;
+}
+@keyframes onimai-lang-sweep {
+  from { transform: translate(-50%, 50%) scale(0) }
+  to { transform: translate(-50%, 50%) scale(1) }
+}
+
+@keyframes onimai-face-scroll { from { background-position: 0 0 } to { background-position: 0 -1000px } }
+
+/* 内容区: 官网式稀疏大粒子(每层 no-repeat 独立缓慢漂移,
+ * @property 单值语法按 x/y 轴拆分注册,6 个粒子双轴独立平滑动画) */
+@property --onimai-p1x { syntax: '<length-percentage>'; inherits: false; initial-value: 8% }
+@property --onimai-p1y { syntax: '<length-percentage>'; inherits: false; initial-value: 10% }
+@property --onimai-p2x { syntax: '<length-percentage>'; inherits: false; initial-value: 74% }
+@property --onimai-p2y { syntax: '<length-percentage>'; inherits: false; initial-value: 8% }
+@property --onimai-p3x { syntax: '<length-percentage>'; inherits: false; initial-value: 90% }
+@property --onimai-p3y { syntax: '<length-percentage>'; inherits: false; initial-value: 50% }
+@property --onimai-p4x { syntax: '<length-percentage>'; inherits: false; initial-value: 18% }
+@property --onimai-p4y { syntax: '<length-percentage>'; inherits: false; initial-value: 72% }
+@property --onimai-p5x { syntax: '<length-percentage>'; inherits: false; initial-value: 40% }
+@property --onimai-p5y { syntax: '<length-percentage>'; inherits: false; initial-value: 28% }
+@property --onimai-p6x { syntax: '<length-percentage>'; inherits: false; initial-value: 80% }
+@property --onimai-p6y { syntax: '<length-percentage>'; inherits: false; initial-value: 78% }
+
+.stage { position: relative }
+.stage::before, .stage::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  z-index: 0;
+}
+/* 大粒子层(4 个):蓝/粉/橙花,120-190px,各轴 41-72s 缓慢漂移 */
+.stage::before {
+  background-image: var(--lc-stage-drift-a);
+  background-size: 190px 190px, 160px 160px, 140px 140px, 120px 120px;
+  background-position: var(--onimai-p1x) var(--onimai-p1y), var(--onimai-p2x) var(--onimai-p2y), var(--onimai-p3x) var(--onimai-p3y), var(--onimai-p4x) var(--onimai-p4y);
+  animation: onimai-p1x 48s ease-in-out infinite alternate, onimai-p1y 63s ease-in-out infinite alternate, onimai-p2x 56s ease-in-out infinite alternate, onimai-p2y 45s ease-in-out infinite alternate, onimai-p3x 72s ease-in-out infinite alternate, onimai-p3y 58s ease-in-out infinite alternate, onimai-p4x 41s ease-in-out infinite alternate, onimai-p4y 52s ease-in-out infinite alternate;
+}
+/* 小粒子层(2 个):星星,34-44px + 头像圈(官网 mainCont__characircle,居中偏上) */
+.stage::after {
+  background-image: var(--lc-stage-drift-b), var(--lc-stage-avatar);
+  background-size: 44px 44px, 34px 34px, 160px 172px;
+  background-position: var(--onimai-p5x) var(--onimai-p5y), var(--onimai-p6x) var(--onimai-p6y), 50% 26px;
+  animation: onimai-p5x 59s ease-in-out infinite alternate, onimai-p5y 47s ease-in-out infinite alternate, onimai-p6x 44s ease-in-out infinite alternate, onimai-p6y 61s ease-in-out infinite alternate;
+}
+.stage > * { position: relative; z-index: var(--lc-stage-zfix) }
+
+/* 信息条(表格):亮色半透明白底圆角卡片,暗色保持透明 */
+#view-plugins .tbl, #view-skills .tbl, #view-sessions .tbl, #view-storage .tbl {
+  border-radius: 12px;
+  background: var(--lc-tbl-bg, transparent);
+  box-shadow: var(--lc-tbl-shadow, none);
+}
+
+@keyframes onimai-p1x { to { --onimai-p1x: 15% } }
+@keyframes onimai-p1y { to { --onimai-p1y: 18% } }
+@keyframes onimai-p2x { to { --onimai-p2x: 66% } }
+@keyframes onimai-p2y { to { --onimai-p2y: 15% } }
+@keyframes onimai-p3x { to { --onimai-p3x: 97% } }
+@keyframes onimai-p3y { to { --onimai-p3y: 43% } }
+@keyframes onimai-p4x { to { --onimai-p4x: 11% } }
+@keyframes onimai-p4y { to { --onimai-p4y: 80% } }
+@keyframes onimai-p5x { to { --onimai-p5x: 47% } }
+@keyframes onimai-p5y { to { --onimai-p5y: 35% } }
+@keyframes onimai-p6x { to { --onimai-p6x: 72% } }
+@keyframes onimai-p6y { to { --onimai-p6y: 70% } }
+
+/* ══ 控制台日志框:暗色模式(默认) = 68.jpg 背景(遮罩+字影保证红黑字可读);亮色见下方 188.jpg ══ */
+:root .console-box {
+  background:
+    linear-gradient(rgba(8, 12, 18, .55), rgba(8, 12, 18, .55)),
+    url('/assets/onimai/68.jpg') center / cover no-repeat #0a0f14;
+  color: #b91c1c;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .85);
+}
+/* ══ 控制台日志框:亮色模式 = 188.jpg 背景(轻遮罩保证浅字可读),暗色保持默认 ══ */
+:root[data-theme="light"] .console-box {
+  background:
+    linear-gradient(rgba(40, 26, 30, .40), rgba(40, 26, 30, .40)),
+    url('/assets/onimai/188.jpg') center / cover no-repeat;
+  color: #ffecd4;
+}
+@media (prefers-color-scheme: light) {
+  :root[data-theme="auto"] .console-box {
+    background:
+      linear-gradient(rgba(40, 26, 30, .40), rgba(40, 26, 30, .40)),
+      url('/assets/onimai/188.jpg') center / cover no-repeat;
+    color: #ffecd4;
+  }
+}
