@@ -15,7 +15,7 @@
 
 This rework draws on the visual style of the onimai.jp website:
 
-- **绪山真寻 skin** — full launcher reskin in Mahiro's style (shipped as the `onimai` launcher skin): sidebar with the official onimai.jp website's background layout, circular avatar button at the bottom-left, particle background, ZCOOL KuaiLe font, authentic proportions and hover states;
+- **绪山真寻 skin** — full launcher reskin in Mahiro's style (shipped as the `onimai` launcher skin): sidebar following the onimai.jp website's background layout, circular avatar button at the bottom-left, particle background, ZCOOL KuaiLe font, onimai-style proportions and hover states;
 - **Light / dark / follow-system themes** — switchable on the Skins page or by **double-clicking the bottom-left image**; each theme gets its own console-log artwork: dark mode uses a moody background with a dark overlay and red-on-black text shadow for readability, light mode uses a warm cream palette with a lighter overlay;
 - **One button, two gestures** — the bottom-left image is both the language switch and the theme switch: **single-click** toggles zh/en with a full-circle sweep animation and reload, **double-click** toggles light/dark instantly without reload;
 - **Rebranded skin center** — the dsh-skin-center plugin (Apache-2.0 by [@linxin666](https://github.com/zhu1090093659/dsh-web-ui)) is locally rebranded and preloaded with **16 community skins** (Maid Atelier, Furina, Miku, Matrix, Dragon Heir, Whale Song, …), switchable on the Skins page;
