@@ -1,8 +1,8 @@
-# DSH CyberWorkStation — onimai 主题美化改版
+# DSH CyberWorkStation — 绪山真寻主题美化改版
 
 **中文** | [English](README.md)
 
-> 由 **bailing** 基于 DSH Suite 工作台进行的 onimai 风格美化改版,让 [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) 从"命令行工具"变成"可视化工作站":动漫风格桌面启动器 + 9 个生产级插件 + 6 个工程 Skill + 1 个 dsh 内 Skill。
+> 由 **bailing** 基于 DSH Suite 工作台进行的**绪山真寻**(Mahiro Oyama,《别当欧尼酱了！》)主题美化改版,让 [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) 从"命令行工具"变成"可视化工作站":真寻主题动漫风格桌面启动器 + 9 个生产级插件 + 6 个工程 Skill + 1 个 dsh 内 Skill。
 > **不改本体一行代码** —— 全部能力通过官方插件扩展点外挂实现,本体随时可独立升级。
 
 ![暗色模式](docs/screenshots/onimai-dark.jpg)
@@ -15,7 +15,7 @@
 
 本改版的目标是让启动器的每一像素都还原 onimai.jp 官网的观感:
 
-- **onimai 皮肤** —— 启动器整体换肤为 onimai 官网风格:侧边栏还原官网背景布局、左下角圆形头像按钮、粒子背景、站酷快乐体字体、真实的占比与悬停态;
+- **绪山真寻皮肤** —— 启动器整体换肤为真寻主题(以 `onimai` 启动器皮肤形式随包分发):侧边栏还原 onimai.jp 官网背景布局、左下角圆形头像按钮、粒子背景、站酷快乐体字体、真实的占比与悬停态;
 - **亮 / 暗 / 跟随系统三主题** —— 可在皮肤页切换,或**双击左下角图片**即时切换;每个主题有专属的日志框背景图:暗色模式用深色底图 + 深色遮罩 + 红黑文字投影保证可读性,亮色模式用暖白奶油配色 + 轻遮罩;
 - **一个按钮,两种手势** —— 左下角图片同时承担语言与主题切换:**单击**切换中英文(完整圆扇形过场动画 + 刷新),**双击**切换亮/暗主题(即时生效,不刷新);
 - **改壳皮肤中心** —— 本地改壳 [@linxin666](https://github.com/zhu1090093659/dsh-web-ui) 的 dsh-skin-center 插件(Apache-2.0),内置 **16 款社区皮肤**(Maid Atelier、芙宁娜、初音、矩阵、龙裔、鲸歌……),皮肤页一键切换;
@@ -148,7 +148,7 @@ dsh 基于 Cordis 插件框架,套件只用这些**官方扩展点**:
 
 ## ✦ 皮肤系统与素材说明
 
-- **启动器皮肤**(`launcher/skins/launcher/`):`cyberpunk-2077`(赛博朋克 2077 × 边缘行者,即梦 AI 生成)、`default`(三态主题),以及 **`onimai`**(本美化改版的招牌皮肤,灵感来自 onimai.jp 官网 —— 素材随包分发仅供**非商用**使用);
+- **启动器皮肤**(`launcher/skins/launcher/`):`cyberpunk-2077`(赛博朋克 2077 × 边缘行者,即梦 AI 生成)、`default`(三态主题),以及 **`onimai`**(本美化改版的招牌**绪山真寻主题皮肤**,素材来自 onimai.jp 官网 —— 随包分发仅供**非商用**使用);
 - **dsh 前端皮肤**(`launcher/skins/frontend/`):经 `dsh-skin-loader` 插件注入 dsh Web UI。选「(无)」恢复原生外观;
 - **社区皮肤市场**:npm 皮肤包一键搜索安装(双重过滤 dsh 生态 + 皮肤语义);每个包**就地转换为单个本地 CSS 文件**,在皮肤页统一管理 —— 皮肤绝不混进插件系统。转换产物 git 忽略(版权归原作者);
 - **16 款内置皮肤**随 `dsh-skin-center` 分发,每款自带 LICENSE / NOTICE。

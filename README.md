@@ -1,8 +1,8 @@
-# DSH CyberWorkStation — onimai-themed beauty rework
+# DSH CyberWorkStation — 绪山真寻 (Mahiro Oyama) themed beauty rework
 
 [中文](README.zh.md) | **English**
 
-> An onimai-styled beauty rework of the DSH Suite workbench by **bailing**, turning [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) from a CLI tool into a visual workstation: an anime-styled desktop launcher + 9 production-grade plugins + 6 engineering skills + 1 in-dsh skill.
+> A 绪山真寻 (Mahiro Oyama, from *OniMai*) themed beauty rework of the DSH Suite workbench by **bailing**, turning [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) from a CLI tool into a visual workstation: a Mahiro-themed anime desktop launcher + 9 production-grade plugins + 6 engineering skills + 1 in-dsh skill.
 > **Zero core rewrites** — every capability is delivered through official plugin extension points, so the upstream core stays independently upgradable at all times.
 
 ![Dark theme](docs/screenshots/onimai-dark.jpg)
@@ -15,7 +15,7 @@
 
 This rework focuses on making every pixel of the launcher feel like the onimai.jp website:
 
-- **onimai skin** — full launcher reskin in onimai style: sidebar with the official site's background layout, circular language button at the bottom-left, particle background, ZCOOL KuaiLe font, authentic proportions and hover states;
+- **绪山真寻 skin** — full launcher reskin in Mahiro's style (shipped as the `onimai` launcher skin): sidebar with the official onimai.jp website's background layout, circular avatar button at the bottom-left, particle background, ZCOOL KuaiLe font, authentic proportions and hover states;
 - **Light / dark / follow-system themes** — switchable on the Skins page or by **double-clicking the bottom-left image**; each theme gets its own console-log artwork: dark mode uses a moody background with a dark overlay and red-on-black text shadow for readability, light mode uses a warm cream palette with a lighter overlay;
 - **One button, two gestures** — the bottom-left image is both the language switch and the theme switch: **single-click** toggles zh/en with a full-circle sweep animation and reload, **double-click** toggles light/dark instantly without reload;
 - **Rebranded skin center** — the dsh-skin-center plugin (Apache-2.0 by [@linxin666](https://github.com/zhu1090093659/dsh-web-ui)) is locally rebranded and preloaded with **16 community skins** (Maid Atelier, Furina, Miku, Matrix, Dragon Heir, Whale Song, …), switchable on the Skins page;
@@ -148,7 +148,7 @@ No — saves hot-reload within 1.5 s.
 
 ## ✦ Skin system & artwork notice
 
-- **Launcher skins** (`launcher/skins/launcher/`): `cyberpunk-2077` (Cyberpunk 2077 × Edgerunners, Jimeng-AI-generated art), `default` (three-state theme), and **`onimai`** (the beauty-rework skin inspired by the onimai.jp website — artwork bundled for **non-commercial use only**);
+- **Launcher skins** (`launcher/skins/launcher/`): `cyberpunk-2077` (Cyberpunk 2077 × Edgerunners, Jimeng-AI-generated art), `default` (three-state theme), and **`onimai`** (the 绪山真寻-themed beauty-rework skin, artwork from the official onimai.jp website — bundled for **non-commercial use only**);
 - **dsh frontend skins** (`launcher/skins/frontend/`): injected into the dsh web UI via the `dsh-skin-loader` plugin. Pick "(none)" to restore stock looks;
 - **Community skin market**: search npm skin packages and install with one click (double-filtered for the dsh ecosystem + skin semantics); each package is **converted in place into a single local CSS file** and managed on the Skins page — skins never end up in the plugin system. Converted files are git-ignored (copyright stays with the original authors);
 - **16 bundled skins** ship inside `dsh-skin-center`, each with its own LICENSE / NOTICE.
