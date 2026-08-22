@@ -1,27 +1,29 @@
-# DSH Suite — the DeepSeek Harness power-user workbench
+# DSH CyberWorkStation — onimai-themed beauty rework
 
 [中文](README.zh.md) | **English**
 
-> A complete toolkit that turns [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) from a CLI tool into a visual workstation: a cyberpunk desktop launcher + 8 production-grade plugins + 6 engineering skills + 1 in-dsh skill.
+> An onimai-styled beauty rework of the DSH Suite workbench by **bailing**, turning [DeepSeek Harness (dsh)](https://github.com/deepseek-ai/deepseek-harness) from a CLI tool into a visual workstation: an anime-styled desktop launcher + 9 production-grade plugins + 6 engineering skills + 1 in-dsh skill.
 > **Zero core rewrites** — every capability is delivered through official plugin extension points, so the upstream core stays independently upgradable at all times.
 
-![DSH Workbench · Cyberpunk 2077 × Edgerunners skin](docs/screenshots/dashboard.png)
+![Dark theme](docs/screenshots/onimai-dark.jpg)
 
-| SillyTavern-grade Control Deck | Skin manager + community skin market |
-|---|---|
-| ![Control Deck](docs/screenshots/deck.png) | ![Skin system](docs/screenshots/skins.png) |
-
-<details><summary>More: CC-style token analytics (heatmap / streaks / Moby-Dick easter egg)</summary>
-
-![Token analytics](docs/screenshots/tokens.png)
-
-</details>
+![Light theme](docs/screenshots/onimai-light.jpg)
 
 ---
 
+## ✦ Beauty highlights
+
+This rework focuses on making every pixel of the launcher feel like the onimai.jp website:
+
+- **onimai skin** — full launcher reskin in onimai style: sidebar with the official site's background layout, circular language button at the bottom-left, particle background, ZCOOL KuaiLe font, authentic proportions and hover states;
+- **Light / dark / follow-system themes** — switchable on the Skins page or by **double-clicking the bottom-left image**; each theme gets its own console-log artwork: dark mode uses a moody background with a dark overlay and red-on-black text shadow for readability, light mode uses a warm cream palette with a lighter overlay;
+- **One button, two gestures** — the bottom-left image is both the language switch and the theme switch: **single-click** toggles zh/en with a full-circle sweep animation and reload, **double-click** toggles light/dark instantly without reload;
+- **Rebranded skin center** — the dsh-skin-center plugin (Apache-2.0 by [@linxin666](https://github.com/zhu1090093659/dsh-web-ui)) is locally rebranded and preloaded with **16 community skins** (Maid Atelier, Furina, Miku, Matrix, Dragon Heir, Whale Song, …), switchable on the Skins page;
+- **Polished details** — full-circle sweep transition, circular buttons with the original site's proportions, floating particles, animated refresh/loading effects, bilingual UI.
+
 ## ✦ What is this
 
-DeepSeek Harness is DeepSeek's official agent framework — powerful, but natively CLI-only with a plain web UI. DSH Suite adds on top of it:
+DeepSeek Harness is DeepSeek's official agent framework — powerful, but natively CLI-only with a plain web UI. This project adds on top of it:
 
 - **A desktop launcher** (UX inspired by 秋叶 aaaki's ComfyUI packs): double-click an EXE for one-click start/stop, plugin market, skill market, skin market, token analytics, session browser, and one-click updates — all graphical;
 - **The Control Deck**: SillyTavern-grade multi-entry leveled prompt injection, regex scripts, World Info lorebooks, and sampling overrides, edited in a GUI and hot-reloaded within 1.5 s;
@@ -35,12 +37,12 @@ Everything ships as **plugins / skills / a standalone launcher** — `git status
 Prerequisites: Windows 10/11, [Git](https://git-scm.com/), [Node.js ^22.19 || >=24](https://nodejs.org/), Edge or Chrome.
 
 ```bat
-git clone https://github.com/WZZNNE/DSH-CyberWorkStation.git
-cd DSH-CyberWorkStation
+git clone https://github.com/bailingsancun/DSH-CyberWorkStation-skin.git
+cd DSH-CyberWorkStation-skin
 setup.cmd
 ```
 
-`setup.cmd` automatically: uses the bundled `core/` source tree (dsh 0.1.0-rc.8; falls back to cloning upstream when absent) → installs deps and builds (build:lib + build:web) → registers all suite plugins → opens the launcher.
+`setup.cmd` automatically: clones the upstream core **pinned to `dsh-v0.1.0-rc.8`** (the plugin API this suite targets; ~1.5 GB, skipped when a local `core/` already exists) → installs deps and builds (build:lib + build:web) → registers all 9 plugins into the web profile → opens the launcher.
 
 Daily use afterwards: double-click `launcher/DSH启动器.exe`. Manual mode: `node launcher/server.mjs` then visit `http://127.0.0.1:3090`.
 
@@ -62,7 +64,7 @@ Daily use afterwards: double-click `launcher/DSH启动器.exe`. Manual mode: `no
 | Costs / balances | ✗ | Live balances (OpenRouter/OpenAI/local), auto price catalog sync, cache-hit strip | Plugin `dsh-cost-meter-plus` | Fork of [Han-1413141/dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) (MIT) |
 | Usage panel, de-peaked | - | Removes peak/off-peak price display | Plugin `dsh-token-usage-plus` | Fork of [Tastelessor/dsh-usage-stats](https://github.com/Tastelessor/dsh-usage-stats) (MIT) |
 | Destructive-command blocking | ask-confirm only | 38 pattern classes denied outright (`rm -rf`, format, registry, …) | Plugin `dsh-safe-guard` | Original |
-| Control Deck (ST-grade) | ✗ | See the tutorial below | Plugin `dsh-control-deck` | Original; semantics aligned with [SillyTavern](https://github.com/SillyTavern/SillyTavern) (behavior reference, no code included) |
+| Control Deck (ST-grade) | ✗ | See the section below | Plugin `dsh-control-deck` | Original; semantics aligned with [SillyTavern](https://github.com/SillyTavern/SillyTavern) (behavior reference, no code included) |
 | Frontend skin injection | ✗ | Injects `~/.dsh/frontend-skin.css` into the dsh web UI | Plugin `dsh-skin-loader` | Original |
 | Hover model prices | ✗ | Model picker shows input/output USD per million tokens on hover | Plugin `dsh-price-hint` | Original |
 | Quick workspace | manual GUI steps | One-click HTTP creation by absolute path | Plugin `dsh-quick-workspace` | Original |
@@ -70,45 +72,15 @@ Daily use afterwards: double-click `launcher/DSH启动器.exe`. Manual mode: `no
 | Engineering skills | ✗ | Architecture / plugin / frontend / ops / playbook / testing six-pack | Claude Code skills | Original |
 | **Core rewrites** | - | **0 lines** — everything above goes through official extension points | - | - |
 
-## ✦ Control Deck tutorial
+## ✦ Control Deck (brief)
 
 > "Control Deck" page in the launcher sidebar. Every save **hot-reloads within 1.5 s** — no dsh restart. Semantics match SillyTavern, so ST veterans feel at home instantly.
 
-### 1. Prompt injection (multi-entry, leveled)
-
-Each entry has:
-- **Name / text**: what gets injected;
-- **order**: lower numbers sort earlier — multiple entries stack by order;
-- **position**: `system` (into the system prompt) or `user-prefix` (prepended to the user message);
-- **interval**: 1 = every step; N>1 = once every N steps (periodic reminders);
-- **enabled**: toggle per entry without deleting it.
-
-### 2. Regex scripts (ST runRegexScript semantics)
-
-Rewrites user input / world-info content, with SillyTavern-compatible fields:
-- **findRegex** (flags supported) and **replaceString** with `{{match}}` (whole match) and `$1…$9` capture groups;
-- **trimStrings**: substrings stripped from the match before it fills `{{match}}`;
-- **placement**: scope — `user_input` or `world_info`.
-
-### 3. World Info (full ST field set)
-
-Scans recent conversation and injects lore when keys match:
-- **keys**: primary keywords, `/regex/flags` supported; **secondaryKeys + selectiveLogic**: `andAny / andAll / notAny / notAll`;
-- **constant 🔵**: always injected, no key needed; **probability**: percentage gate after a match;
-- **order / position**; **caseSensitive / matchWholeWords** (whole-word by default, auto-skipped for CJK text);
-- **Recursion**: one entry's content can trigger another (`excludeRecursion / preventRecursion / delayUntilRecursion` + global `maxRecursionSteps`);
-- **inclusion group + groupWeight**: mutually exclusive within a group, weighted pick;
-- **sticky / cooldown / delay** measured in message counts;
-- **Global settings**: `scanDepth` (how many recent messages to scan) and `budgetChars` (injection budget).
-
-### 4. Sampling overrides (with a master switch)
-
-**When "enable sampling override" is unchecked, the plugin touches no request parameters at all** — nothing can be passed by accident. When checked, you can override temperature, maxTokens, and stop sequences (up to 4).
-Reasoning effort is deliberately **not** in the Control Deck: the native model picker already owns it, and two controllers would fight.
-
-### 5. Tool switches
-
-List tool names to deny them at the `tools/pre-execute` stage (e.g. disable `web_search`).
+1. **Prompt injection (multi-entry, leveled)** — each entry: name/text, `order` (stacking), `position` (`system` / `user-prefix`), `interval` (1 = every step), `enabled` toggle;
+2. **Regex scripts (ST runRegexScript semantics)** — `findRegex` + `replaceString` with `{{match}}` and `$1…$9` capture groups, `trimStrings`, `placement` (`user_input` / `world_info`);
+3. **World Info (full ST field set)** — keyword/regex keys with `andAny/andAll/notAny/notAll` logic, constant 🔵 entries, probability gates, whole-word matching (CJK-aware), recursion control, inclusion groups with weights, sticky/cooldown/delay, global `scanDepth` + `budgetChars`;
+4. **Sampling overrides (with a master switch)** — off by default so nothing can leak into requests; when enabled: temperature, maxTokens, stop sequences (≤4). Reasoning effort stays with the native model picker;
+5. **Tool switches** — deny tools at `tools/pre-execute` (e.g. disable `web_search`).
 
 ## ✦ Launcher page tour
 
@@ -126,26 +98,21 @@ List tool names to deny them at the `tools/pre-execute` stage (e.g. disable `web
 | Quick workspace | Create a workspace from an absolute path (dsh must be running) |
 | Logs | Launcher internals / dsh output / update logs |
 
-The 🌐 icon at the bottom-left switches zh/en; the default skin supports light / dark / follow-system.
-
-## ✦ The skin system
-
-- **Launcher skins** (`launcher/skins/launcher/`): `cyberpunk-2077` (Cyberpunk 2077 × Edgerunners, Jimeng-AI-generated art), `default` (three-state theme), and `onimai` (original CSS skin inspired by the onimai.jp website — artwork bundled for non-commercial use only, copyright stays with the original owners).
-- **dsh frontend skins** (`launcher/skins/frontend/`): injected into the dsh web UI via the `dsh-skin-loader` plugin. Pick "(none)" to restore stock looks.
-- **Community skin market**: search npm skin packages and install with one click (results are double-filtered for the dsh ecosystem + skin semantics, so unrelated packages never slip in). The launcher **converts each package in place into a single local CSS file** (manifest-v2 asset dirs, legacy client.js plugin format, plain CSS packages, and aggregator shells via one-level recursion are all supported); background art is inlined as data URIs and layered exactly like the original skin-center runtime — painted on the body above its background color, beneath the translucent panels, with light/dark variants following the dsh theme attribute. Converted skins are then switched/deleted like your own — skins never end up in the plugin system. Converted files are git-ignored (copyright stays with the original authors).
+The 🌐 image at the bottom-left: **single-click** switches zh/en (sweep animation), **double-click** toggles light/dark.
 
 ## ✦ Plugin roster
 
-| Plugin | Responsibility | Tests |
-|---|---|---|
-| `dsh-control-deck` | ST-grade prompts/regex/lorebook/sampling (pure-function engine + thin host shell) | 26 (11 semantics + 15 adversarial) |
-| `dsh-safe-guard` | Destructive-command denial (deny, no confirm noise) | 44 (38 + 6 bypass-adversarial) |
-| `dsh-cost-meter-plus` | Balances / prices / cache hits / ledger | 6 |
-| `dsh-token-usage-plus` | De-peaked usage panel | - |
-| `dsh-skin-loader` | Frontend skin injection | - |
-| `dsh-price-hint` | Hover model prices | - |
-| `dsh-quick-workspace` | HTTP quick workspace | - |
-| `dsh-skin-studio` | Model-facing skin studio: the `skin_studio` tool plus a guided requirements flow, installing through the launcher API; companion dsh skill (`dsh-skills/skin-studio`, installed to `~/.dsh/skills/`) carries the variable tables and templates | 9 (4 + 5 adversarial) |
+| Plugin | Responsibility |
+|---|---|
+| `dsh-control-deck` | ST-grade prompts/regex/lorebook/sampling (pure-function engine + thin host shell) |
+| `dsh-safe-guard` | Destructive-command denial (deny, no confirm noise) |
+| `dsh-cost-meter-plus` | Balances / prices / cache hits / ledger |
+| `dsh-token-usage-plus` | De-peaked usage panel |
+| `dsh-skin-loader` | Frontend skin injection |
+| `dsh-price-hint` | Hover model prices |
+| `dsh-quick-workspace` | HTTP quick workspace |
+| `dsh-skin-studio` | Model-facing skin studio: the `skin_studio` tool plus a guided requirements flow |
+| `dsh-skin-center` | Local rebrand of @linxin666's skin center — 16 bundled skins, switchable on the Skins page |
 
 ## ✦ Engineering skills (six-pack)
 
@@ -168,10 +135,10 @@ The launcher is a fully separate process that talks to the core only via CLI and
 ## ✦ FAQ
 
 **Q: A task failed with `MISSING_CREDENTIAL: deepseek-official` — is that a bug?**
-No. dsh sessions **pin the model chosen at creation time**. If a session was created on the official DeepSeek model while you only configured an OpenRouter key, that session keeps using the official channel and reports the missing credential. Fix: start a new session (default model shows on the dashboard), switch models inside the session, or add `DEEPSEEK_API_KEY`.
+No. dsh sessions **pin the model chosen at creation time**. If a session was created on the official DeepSeek model while you only configured an OpenRouter key, that session keeps using the official channel and reports the missing credential. Fix: start a new session, switch models inside the session, or add `DEEPSEEK_API_KEY`.
 
 **Q: Where did my market-installed skin go?**
-The "dsh frontend skins" section of the Skins page — never the plugin list (v1 briefly installed them as plugins; that's fixed, with conversion).
+The "dsh frontend skins" section of the Skins page — never the plugin list.
 
 **Q: UI changes not showing?**
 Browser cache — hard-refresh with `Ctrl+F5`.
@@ -179,6 +146,13 @@ Browser cache — hard-refresh with `Ctrl+F5`.
 **Q: Do Control Deck edits need a restart?**
 No — saves hot-reload within 1.5 s.
 
+## ✦ Skin system & artwork notice
+
+- **Launcher skins** (`launcher/skins/launcher/`): `cyberpunk-2077` (Cyberpunk 2077 × Edgerunners, Jimeng-AI-generated art), `default` (three-state theme), and **`onimai`** (the beauty-rework skin inspired by the onimai.jp website — artwork bundled for **non-commercial use only**);
+- **dsh frontend skins** (`launcher/skins/frontend/`): injected into the dsh web UI via the `dsh-skin-loader` plugin. Pick "(none)" to restore stock looks;
+- **Community skin market**: search npm skin packages and install with one click (double-filtered for the dsh ecosystem + skin semantics); each package is **converted in place into a single local CSS file** and managed on the Skins page — skins never end up in the plugin system. Converted files are git-ignored (copyright stays with the original authors);
+- **16 bundled skins** ship inside `dsh-skin-center`, each with its own LICENSE / NOTICE.
+
 ## ✦ License & credits
 
-Original suite code is MIT (see [LICENSE](LICENSE)). Forked plugins keep their upstream MIT licenses: [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) (Han-1413141), [dsh-usage-stats](https://github.com/Tastelessor/dsh-usage-stats) (Tastelessor). Control Deck semantics align with [SillyTavern](https://github.com/SillyTavern/SillyTavern) (behavior reference only, no code included). Community skin content belongs to its authors (Maid Atelier is CC BY-NC-SA 4.0, non-commercial). Launcher artwork generated with Jimeng AI by the suite author. The onimai skin's artwork comes from the official onimai.jp website and is bundled for non-commercial use only (copyright stays with its owners). `dsh-skin-center` is a local rebrand of [@linxin666/dsh-client-ui-skin-center](https://github.com/zhu1090093659/dsh-web-ui) (Apache-2.0). Launcher UX pays homage to [秋叶 aaaki's ComfyUI pack launcher](https://space.bilibili.com/12566101).
+Original suite code is MIT (see [LICENSE](LICENSE)); this beauty rework by **bailing** (onimai skin CSS, theme logic, rebrand) is also MIT. Forked plugins keep their upstream MIT licenses: [dsh-cost-meter](https://github.com/Han-1413141/dsh-cost-meter) (Han-1413141), [dsh-usage-stats](https://github.com/Tastelessor/dsh-usage-stats) (Tastelessor). Control Deck semantics align with [SillyTavern](https://github.com/SillyTavern/SillyTavern) (behavior reference only, no code included). Community skin content belongs to its authors (Maid Atelier is CC BY-NC-SA 4.0, non-commercial). The onimai skin's artwork comes from the official onimai.jp website and is bundled for **non-commercial use only** (copyright stays with its owners). `dsh-skin-center` is a local rebrand of [@linxin666/dsh-client-ui-skin-center](https://github.com/zhu1090093659/dsh-web-ui) (Apache-2.0). The ZCOOL KuaiLe font is licensed under the ZCOOL Font Free Commercial License. Launcher artwork generated with Jimeng AI by the suite author. Launcher UX pays homage to [秋叶 aaaki's ComfyUI pack launcher](https://space.bilibili.com/12566101).
