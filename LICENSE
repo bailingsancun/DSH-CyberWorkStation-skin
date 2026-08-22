@@ -40,11 +40,11 @@ Third-party notices
 - Launcher artwork (city backdrop, hex badge, icon grid, banner) was generated
   with Jimeng AI by the suite author.
 - The onimai launcher skin (launcher/skins/launcher/onimai.css) is original
-  suite code, but its artwork (launcher/public/assets/onimai/, including
+  suite code; its artwork (launcher/public/assets/onimai/, including
   character art and background images) was captured from the official
-  onimai.jp website for local use only. It is NOT redistributed by this
-  repository and remains the property of its respective owners — obtain the
-  artwork yourself before using the skin.
+  onimai.jp website and is redistributed in this repository for
+  NON-COMMERCIAL use only. Copyright remains with the original owners —
+  commercial use of this artwork is not permitted.
 - dsh-skin-center (plugins/dsh-skin-center) is a locally rebranded copy of
   @linxin666/dsh-client-ui-skin-center (Apache-2.0, author zhu1090093659);
   see its own LICENSE file. Bundled skins keep their upstream licenses,

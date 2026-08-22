@@ -22,9 +22,6 @@ launcher/skins/launcher/*.css
 !launcher/skins/launcher/default.css
 !launcher/skins/launcher/onimai.css
 
-# onimai 皮肤第三方素材(爬取自 onimai.jp 官网,版权归原作者,仅本地使用不入库)
-launcher/public/assets/onimai/
-
 # 未被 UI 引用的素材中间产物(bg-city/gen-banner/gen-icons-t/gen-logo-t 被引用,须入库)
 launcher/public/assets/gen-bgfront.png
 launcher/public/assets/gen-icons.png

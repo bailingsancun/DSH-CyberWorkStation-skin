@@ -1,0 +1,50 @@
+<svg id="女マーク" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80.5" height="38" viewBox="0 0 80.5 38">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        fill: #fff899;
+      }
+
+      .cls-1, .cls-4 {
+        fill-rule: evenodd;
+      }
+
+      .cls-1 {
+        filter: url(#filter);
+      }
+
+      .cls-2, .cls-3 {
+        stroke: #ee858c;
+        stroke-linejoin: round;
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        filter: url(#filter-2);
+      }
+
+      .cls-4 {
+        fill: #ee858c;
+      }
+    </style>
+    <filter id="filter" x="299" y="148.562" width="54" height="3.876" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#ee858c"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+    <filter id="filter-2" x="46" y="3.5" width="33" height="33" filterUnits="userSpaceOnUse">
+      <feFlood result="flood" flood-color="#ee858c"/>
+      <feComposite result="composite" operator="in" in2="SourceGraphic"/>
+      <feBlend result="blend" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+  <path id="長方形_4" data-name="長方形 4" class="cls-1" d="M300.946,148.554h50.108a1.946,1.946,0,1,1,0,3.892H300.946A1.946,1.946,0,0,1,300.946,148.554Z" transform="translate(-299 -132.5)"/>
+  <g id="グループ_6_のコピー_4" data-name="グループ 6 のコピー 4">
+    <g style="fill: #fff899; filter: url(#filter-2)">
+      <circle id="楕円形_1" data-name="楕円形 1" class="cls-2" cx="62.5" cy="20" r="16.5" style="stroke: inherit; filter: none; fill: inherit"/>
+    </g>
+    <use xlink:href="#楕円形_1" style="stroke: #ee858c; filter: none; fill: none"/>
+    <circle id="楕円形_1_のコピー" data-name="楕円形 1 のコピー" class="cls-3" cx="60.5" cy="18" r="16.5"/>
+  </g>
+  <path id="べた塗り_1" data-name="べた塗り 1" class="cls-4" d="M357.607,141a6.57,6.57,0,0,1,6.485,4.27,7.274,7.274,0,0,1,.291,4.25,9.7,9.7,0,0,1-1.143,2.354L364.217,153l1.392-1.166a0.866,0.866,0,0,1,.686-0.417,4.247,4.247,0,0,1,1.06,1.146,2.116,2.116,0,0,1,.644.833,5.41,5.41,0,0,1-1.413,1.437,0.79,0.79,0,0,0-.416.438c0.265,0.544,1.418,1.354,1.538,1.875a0.578,0.578,0,0,1-.374.562c-0.376.3-1.182,1.291-1.725,1.292a10.669,10.669,0,0,1-1.683-1.875l-0.063.021a9.269,9.269,0,0,1-1.912,1.583,0.585,0.585,0,0,1-.5-0.354l-1.309-1.542a0.632,0.632,0,0,1,.416-0.645l1.455-1.271-0.125-.125-0.852-1.021a9.218,9.218,0,0,1-1.767.667,7.047,7.047,0,0,1-3.6-.188,6.808,6.808,0,0,1-.041-12.9l1.226-.292Zm-0.1,2.479c-0.382.148-.814,0.113-1.163,0.25a4.408,4.408,0,0,0-2.578,2.583,4.32,4.32,0,0,0,2.515,5.5,3.707,3.707,0,0,0,1.933.291,4.328,4.328,0,0,0,1.393-8.249A4.937,4.937,0,0,0,357.5,143.48Z" transform="translate(-299 -132.5)"/>
+</svg>
