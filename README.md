@@ -13,7 +13,7 @@
 
 ## ✦ Beauty highlights
 
-This rework focuses on making every pixel of the launcher feel like the onimai.jp website:
+This rework draws on the visual style of the onimai.jp website:
 
 - **绪山真寻 skin** — full launcher reskin in Mahiro's style (shipped as the `onimai` launcher skin): sidebar with the official onimai.jp website's background layout, circular avatar button at the bottom-left, particle background, ZCOOL KuaiLe font, authentic proportions and hover states;
 - **Light / dark / follow-system themes** — switchable on the Skins page or by **double-clicking the bottom-left image**; each theme gets its own console-log artwork: dark mode uses a moody background with a dark overlay and red-on-black text shadow for readability, light mode uses a warm cream palette with a lighter overlay;
